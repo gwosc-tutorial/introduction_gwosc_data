@@ -1,13 +1,19 @@
 # Introduction to GWOSC Data
 
 This repository contains tutorials for the [GWOSC](https://gwosc.org) data.
-
-## How to use the tutorials?
-
 The tutorials come as Jupyter Notebooks and use the Python language.
-Each notebook illustrates a particular aspect of working with GWOSC data.
-The simplest option is to run them in order.
 Don't hesitate to extract part of the notebooks in your own scripts.
+
+Each notebook illustrates a particular aspect of working with GWOSC data:
+  - Notebook 1 explains how to download data from the GWOSC website.
+  - Notebook 2 presents details about reading the content of a file.
+  - Notebook 3 presents quality flags, an important concept when working with gravitational wave data.
+  - Notebook 4 presents another important concept for gravitational wave data, the frequency domain.
+  - Notebook 5 presents a higher-level interface that hides many details to provide an easier access to the data.
+
+We suggest 2 learning paths:
+  - if you want to understand the details about GWOSC files, simply run the tutorials in order
+  - if you're comfortable with gravitational wave data and don't want to bother about the details, go directly to notebook 5
 
 ## How to run the notebooks?
 
