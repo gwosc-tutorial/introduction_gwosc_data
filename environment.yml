@@ -1,0 +1,12 @@
+# We fix the version of the requirements to avoid incompatibilities
+# jupyterlab version is the same than in binder
+name: introduction_gwosc_data
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - jupyterlab=4.2.5
+  - h5py=3.12.1
+  - matplotlib=3.9.2
+  - scipy=1.14.1
+  - gwpy=3.0.8
