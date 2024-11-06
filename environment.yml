@@ -1,0 +1,10 @@
+name: introduction_gwosc_data
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - notebook
+  - h5py
+  - matplotlib
+  - scipy
+  - gwpy
