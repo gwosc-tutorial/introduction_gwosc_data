@@ -1,3 +1,4 @@
+notebook
 h5py
 matplotlib
 scipy
