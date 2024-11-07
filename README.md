@@ -33,7 +33,7 @@ The last notebook suggests other tutorials and resources to continue your journe
 If you have further questions, connect with the gravitational-wave community on [ask.igwn.org](https://ask.igwn.org/).
 
 If you have found an error or want to suggest an improvement,
-don't hesitate to contact us at gwosc@igwn.org or [open an issue on the GitHub repository](https://github.com/gwosc-tutorial/introduction_gwosc_data/issues).
+don't hesitate to [contact us](https://gwosc.org/contact/) or [open an issue on the GitHub repository](https://github.com/gwosc-tutorial/introduction_gwosc_data/issues).
 
 ## License
 
