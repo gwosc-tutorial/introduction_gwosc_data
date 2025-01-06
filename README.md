@@ -4,18 +4,18 @@ Welcome to the "Introduction to GWOSC Data" tutorials.
 The tutorials will show you how to find, download and read gravitationnal wave data
 accessible through the [Gravitational Wave Open Science Center](https://gwosc.org) (GWOSC).
 
-The tutorials come as Jupyter Notebooks and use the Python language.
+The tutorials come as Jupyter notebooks and use the Python language.
 Don't hesitate to extract part of the notebooks in your own scripts.
 
 Each notebook illustrates a particular aspect of working with GWOSC data:
 
-  - Notebook 1 explains how to download data from the GWOSC website.
-  - Notebook 2 presents details about reading the content of a file.
-  - Notebook 3 presents quality flags, an important concept when working with gravitational wave data.
-  - Notebook 4 presents another important concept for gravitational wave data, the frequency domain.
-  - Notebook 5 presents a higher-level interface that hides many details to provide an easier access to the data.
+  - [Notebook 1](<01 - Download GWOSC Data.ipynb>) explains how to download data from the GWOSC website.
+  - [Notebook 2](<02 - What's in a GWOSC Data File.ipynb>) presents details about reading the content of a file.
+  - [Notebook 3](<03 - Working with Data Quality.ipynb>) presents quality flags, an important concept when working with gravitational wave data.
+  - [Notebook 4](<04 - Working in the Frequency Domain.ipynb>) presents another important concept for gravitational wave data, the frequency domain.
+  - [Notebook 5](<05 - GWpy Examples.ipynb>) presents a higher-level interface that hides many details to provide an easier access to the data.
 
-We suggest 2 learning paths:
+We suggest 2 approaches to those notebooks:
 
   - if you want to understand the details about gravitationnal wave data, simply run the tutorials in order
   - if you're comfortable with gravitational wave data and don't want to bother about the details, go directly to notebook 5
@@ -23,7 +23,7 @@ We suggest 2 learning paths:
 ## How to run the notebooks?
 
 There are several possibilities to run the notebooks.
-If you're not familiar with the notebook interface, take some time to read [the tutorials](https://jupyter.org/try-jupyter/notebooks/?path=notebooks/Intro.ipynb) (on the page that opens click on "Start now" in the lower right corner).
+If you're not familiar with the notebook interface, take some time to read [this introduction](https://jupyter.org/try-jupyter/notebooks/?path=notebooks/Intro.ipynb) (on the page that opens click on "Start now" in the lower right corner).
 
 ### Option 1 (easy): run on Binder
 
