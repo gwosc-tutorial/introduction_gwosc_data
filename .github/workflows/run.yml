@@ -1,0 +1,30 @@
+name: Run the code
+
+on:
+  workflow_dispatch:
+  push:
+    branches: "*"
+
+jobs:
+  run:
+    name: Run the notebooks
+
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -l {0}
+    strategy:
+      matrix:
+        python-version: [3.9]
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: conda-incubator/setup-miniconda@v3
+    - name: Install requirements
+      run: |
+        conda env create -f environment.yml
+    - name: Convert and execute
+      run: |
+        conda activate introduction_gwosc_data
+        for file in *.ipynb; do echo "Converting" "${file}"; jupyter nbconvert --to python --RegexRemovePreprocessor.patterns="^%" "${file}" ; done
+        for file in *.py; do echo "Running" "${file}"; python "${file}"; done
