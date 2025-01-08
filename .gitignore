@@ -1,3 +1,7 @@
+# We ignore this directory (and its content)
+# It is used by our CI scripts to store their content
+/tmp/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

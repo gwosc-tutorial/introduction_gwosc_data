@@ -1,4 +1,4 @@
-name: Run the code
+name: Check that the code runs
 
 on:
   workflow_dispatch:
@@ -23,8 +23,13 @@ jobs:
     - name: Install requirements
       run: |
         conda env create -f environment.yml
-    - name: Convert and execute
+    - name: Test notebooks execution
       run: |
         conda activate introduction_gwosc_data
-        for file in *.ipynb; do echo "Converting" "${file}"; jupyter nbconvert --to python --RegexRemovePreprocessor.patterns="^%" "${file}" ; done
-        for file in *.py; do echo "Running" "${file}"; python "${file}"; done
+        for file in *.ipynb; do
+            echo "Checking ${file}";
+            if ! ./tests/test_execution.sh "${file}"; then
+                echo "::error file=${file},title=Error";
+                exit 1;
+            fi
+        done
