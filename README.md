@@ -98,6 +98,7 @@ If you have further questions, connect with the gravitational-wave community on 
 
 If you have found an error or want to suggest an improvement,
 don't hesitate to [contact us](https://gwosc.org/contact/) or [open an issue on the GitHub repository](https://github.com/gwosc-tutorial/introduction_gwosc_data/issues).
+You may have a look at the [contribution how-to](Contributing.md).
 
 ## License
 
