@@ -21,7 +21,6 @@ args = parser.parse_args()
 fname = args.notebook
 
 # Check cell order
-print(f"Checking {fname}")
 errors = []
 with open(fname, "r") as file:
     content = json.load(file)
@@ -40,6 +39,10 @@ for cell in content["cells"]:
 
 if len(errors) > 0:
     errors = "\n".join(errors)
-    msg = f"Execution order issues: {errors}"
+    msg =  f"Execution order issues in {fname}:\n"
+    msg += f"{errors}"
     print(msg)
     sys.exit(1)
+else:
+    print(f"No execution order issue in {fname}")
+    sys.exit(0)

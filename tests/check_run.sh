@@ -87,11 +87,11 @@ return_code=$?
 set -e
 if [[ "${return_code}" -ne 0 ]]
 then
-    echo "Error in ${file}."
+    echo "Execution error in ${file}."
     echo "Return code: ${return_code}. Log:"
     cat "${log_file}"
 else
-    echo "No error found in ${file}"
+    echo "No execution error found in ${file}"
 fi
 
 # Clean

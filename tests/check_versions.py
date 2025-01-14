@@ -38,7 +38,6 @@ for element in environment["dependencies"]:
     dependencies[module] = version
 
 # Detect pip installs in notebook and check that it's coherent with the environment
-print(f"Checking {fname}")
 errors = []
 with open(fname, "r") as file:
     content = json.load(file)
@@ -50,17 +49,18 @@ for cell in content["cells"]:
             module, version = element.split("==")
             if module in dependencies:
                 if dependencies[module] != version:
-                    msg = f"Failed: {fname} has a version mismatch in {module}: {version} != {dependencies[module]}"
+                    msg = f"Version mismatch for {module}: {fname} requires {version}, environment requires {dependencies[module]}"
                     errors.append(msg)
-                else:
-                    msg = f"Passed: {fname} uses {module}: {version}"
-                    print(msg)
             else:
-                msg = f"Failed: {fname} needs {module}: {version}, but it is not in the environment.yml file"
+                msg = f"Missing module: {fname} needs {module}: {version}, but it is not in the {env_file} file"
                 errors.append(msg)
 
 if len(errors) > 0:
     errors = "\n".join(errors)
-    msg = f"\nVersion issues: {errors}"
+    msg =  f"Version issues in {fname}:\n"
+    msg += f"{errors}"
     print(msg)
     sys.exit(1)
+else:
+    print(f"No version issue in {fname}")
+    sys.exit(0)
