@@ -27,7 +27,7 @@ jobs:
         conda activate introduction_gwosc_data
         for file in *.ipynb; do
             echo "Checking ${file}";
-            if ! ./tests/spellcheck.sh "${file}"; then
+            if ! ./tests/check_spelling.sh "${file}"; then
                 echo "::error file=${file},title=Error";
                 exit 1;
             fi
