@@ -1,0 +1,27 @@
+name: Check execution order of notebooks
+
+on:
+  workflow_dispatch:
+  push:
+    branches: "*"
+
+jobs:
+  check_versions:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.9]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Check execution order of notebooks
+      run: |
+        for file in *.ipynb; do
+            echo "Checking ${file}";
+            if ! ./tests/check_execution_order.py "${file}"; then
+                echo "::error file=${file},title=Error";
+                exit 1;
+            fi
+        done
+
