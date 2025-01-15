@@ -24,7 +24,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: conda-incubator/setup-miniconda@v3
-    - name: Install requirements
+    - name: Installing requirements
       run: |
         conda env create -f environment.yml
     - name: Test notebooks execution
