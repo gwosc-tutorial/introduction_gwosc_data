@@ -11,6 +11,8 @@ If it's not the case, read [this introduction](https://jupyter.org/try-jupyter/n
 
 ## Contribution workflow
 
+### Basic workflow
+
 The workflow to contribute is based on GitHub.
 
 The first thing to do if you want to improve the tutorials is to open an issue on GitHub to describe your idea.
@@ -19,6 +21,17 @@ This issue will be used to discuss the best way to tackle the problem.
 
 If you want to work on this issue, you will have to fork the repository in your GitHub account,
 create a branch and open a pull request once the modification is done.
+
+### CI rules
+
+The GitHub repository contains CI rules to ensure that some quality criteria are met before merging a PR.
+
+Here is a short description of the rules:
+
+- ensure that the code in the notebook runs
+- ensure that cells are run in order
+- ensure that notebooks don't install packages that are not in the conda environment
+- ensure that there is no spelling mistakes in the files
 
 ## Notebook formatting
 
@@ -92,6 +105,8 @@ Such admonition should go in a separate cell.
 Before committing, it's good to re-run the notebook from scratch
 as it allows to ensure that there is no bug
 and to have nicely ordered cells.
+As explained above the CI rules enforce this so get used to this,
+it will help when opening the PR.
 
 To do so, open the "Run" menu and click "Restart Kernel and Run All Cells".
 
@@ -112,3 +127,74 @@ This specific code should be placed in a dedicated cell near the top of the note
 and commented out by default.
 Also, add a warning before such cells.
 Have look at [tutorial 5](<./05 - GWpy Examples.ipynb>) for an example.
+
+### `git` pre-commit hook
+
+The CI rules described above are based on scripts that stored in this repository.
+For advanced users, we recommend you use those scripts as `git` pre-commit hook
+so you will minimize surprises during the PR.
+Find below an example:
+
+```bash
+#!/usr/bin/env bash
+#
+# An example hook script to verify what is about to be committed.
+# Called by "git commit" with no arguments.  The hook should
+# exit with non-zero status after issuing an appropriate message if
+# it wants to stop the commit.
+#
+# The script is run at the root of the repository
+
+#set -x
+
+set -e
+set -u
+set -o pipefail
+
+# This is used to determine against what to compare:
+# if the repository is not empty, it's HEAD
+# otherwise against the hash of an empty directory
+if git rev-parse --verify HEAD >/dev/null 2>&1
+then
+	against=HEAD
+else
+	# Initial commit: diff against an empty tree object
+	against=$(git hash-object -t tree /dev/null)
+fi
+
+# Redirect output to stderr.
+exec 1>&2
+
+# Get the list of modified files
+# We want all modified files except the delete ones (hence --diff-filter=d)
+declare -a modified_files
+OLD_IFS="${IFS}"
+IFS=$'\n'
+modified_files=( $(git diff --cached --name-only -z --diff-filter=d $against | tr '\0' '\n') )
+IFS="${OLD_IFS}"
+
+if [[ "${#modified_files}" -eq 0 ]]
+then
+    echo "Nothing to check"
+    exit 0
+fi
+
+echo "Gonna check ${#modified_files[@]} file(s): ${modified_files[@]}"
+
+echo "Checking modified files"
+for modified_file in "${modified_files[@]}"
+do
+    if [[ "${modified_file}" =~ \.ipynb$ ]]
+    then
+        echo "Checking notebook ${modified_file}"
+        ./tests/check_run.sh "${modified_file}"
+        ./tests/check_spelling.sh "${modified_file}"
+        ./tests/check_versions.py "${modified_file}"
+        ./tests/check_execution_order.py "${modified_file}"
+    else
+        echo "Checking non-notebook ${modified_file}"
+        # Spell check other files
+        codespell -I .dictionary.txt --skip="*.ipynb" "${modified_file}"
+    fi
+done
+```

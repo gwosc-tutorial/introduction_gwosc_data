@@ -1,0 +1,39 @@
+name: Check that the code runs
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  run:
+    name: Run the notebooks
+
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -l {0}
+    strategy:
+      matrix:
+        python-version: [3.9]
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: conda-incubator/setup-miniconda@v3
+    - name: Installing requirements
+      run: |
+        conda env create -f environment.yml
+    - name: Test notebooks execution
+      run: |
+        conda activate introduction_gwosc_data
+        for file in *.ipynb; do
+            echo "Checking ${file}";
+            if ! ./tests/check_run.sh "${file}"; then
+                echo "::error file=${file},title=Error";
+                exit 1;
+            fi
+        done
