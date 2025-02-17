@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  check_versions:
+  execution_order:
 
     runs-on: ubuntu-latest
     strategy:
