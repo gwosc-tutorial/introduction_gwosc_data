@@ -1,7 +1,7 @@
 # Introduction to GWOSC Data
 
 Welcome to the "Introduction to GWOSC Data" tutorials.
-The tutorials will show you how to find, download and read gravitationnal wave data
+The tutorials will show you how to find, download and read gravitational wave data
 accessible through the [Gravitational Wave Open Science Center](https://gwosc.org) (GWOSC).
 
 The tutorials come as Jupyter notebooks and use the Python language.
@@ -17,7 +17,7 @@ Each notebook illustrates a particular aspect of working with GWOSC data:
 
 We suggest 2 approaches to those notebooks:
 
-  - if you want to understand the details about gravitationnal wave data, simply run the tutorials in order
+  - if you want to understand the details about gravitational wave data, simply run the tutorials in order
   - if you're comfortable with gravitational wave data and don't want to bother about the details, go directly to notebook 5
 
 ## How to run the notebooks?
